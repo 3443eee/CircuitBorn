@@ -9,5 +9,9 @@ extern Vector2 mouseScreen;
 extern Vector2 mouseWorld;
 extern Vector2 griddedMouseWorld;
 extern bool running;
+extern int screenWidth;
+extern int screenHeight;
+extern int currentNodeID;
+extern int mode;
 
 #endif

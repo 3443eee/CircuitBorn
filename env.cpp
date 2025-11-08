@@ -21,7 +21,7 @@ void updateEnv() {
 
     float wheel = GetMouseWheelMove();
     if (wheel != 0) {
-        cc.zoom += wheel * 0.05f;
+        cc.zoom += wheel * 1.0f;
         if (cc.zoom < std::numeric_limits<float>::epsilon()) cc.zoom = std::numeric_limits<float>::epsilon(); // prevent flipping
     }
 }
@@ -50,25 +50,8 @@ void drawEnv() {
             DrawTexture(Textures[0], (int)x, (int)y, WHITE);
         }
     }
-
-    float groundTop = 500; // world Y position of top of the ground
-    float groundTileW = (float)Textures[1].width;
-    float groundTileH = (float)Textures[1].height;
-
-    // Horizontal range
-    startX = floorf(screenArea.x / groundTileW) * groundTileW;
-    float endX = screenArea.x + screenArea.width;
-
-    // Vertical range (from groundTop down to bottom of visible screen)
-    startY = floorf(groundTop / groundTileH) * groundTileH;
-    float endY = screenArea.y + screenArea.height;
-
-    for (float y = startY; y < endY; y += groundTileH) {
-        for (float x = startX; x < endX; x += groundTileW) {
-            DrawTexture(Textures[1], (int)x, (int)y, WHITE);
-        }
-    }
 }
+
 float togrid(float value, float gridSize)
 {
     return roundf(value / gridSize) * gridSize;

@@ -9,3 +9,8 @@ Vector2 mouseScreen;
 Vector2 mouseWorld;
 Vector2 griddedMouseWorld;
 bool running;
+int uiState;
+int screenWidth;
+int screenHeight;
+int currentNodeID = 1;
+int mode = 1;

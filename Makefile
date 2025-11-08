@@ -2,10 +2,13 @@
 MAKEFLAGS += -j$(shell nproc)
 
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -I/home/a/libs/
+CXXFLAGS = -std=c++17 -Wall -Wextra \
+           -I/home/a/libs/
 LIBS = -lraylib -ldl -lm -lpthread -lGL -lrt -lX11
 
 TARGET = CircuitBorn
+
+# Include rlImGui.cpp
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 

@@ -8,7 +8,6 @@ std::vector<Texture2D> Textures;
 Texture2D LoadTextureFromFile(const char* filename) {
     Texture2D texture = LoadTexture(filename);
     //SetTextureFilter(texture, TEXTURE_FILTER_POINT);
-    SetTextureFilter(texture, TEXTURE_FILTER_ANISOTROPIC_4X);
     Textures.push_back(texture);
     return texture;
 }
@@ -35,4 +34,5 @@ void LoadAllSprites() {
     LoadTextureFromFile("res/wire_turn.png"); // 7
     LoadTextureFromFile("res/wire_3.png"); // 8
     LoadTextureFromFile("res/wire_4.png"); // 9
+    LoadTextureFromFile("res/hover.png"); // 10
 }

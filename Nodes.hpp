@@ -6,8 +6,11 @@
 #include "LoadTextures.hpp"
 #include "Globals.hpp"
 #include <vector>
+#include <string>
 #include <memory> 
 #include <map>
+#include <unordered_map>
+#include <algorithm>
 
 class Node {
 public:
@@ -156,6 +159,18 @@ public:
 
 void updateWireOrientation(WireNode* wire);
 
+struct nodeInfo {
+    std::string Name;
+    std::string Desc;
+    int FrameTextureID;
+};
+
+inline std::map<int, nodeInfo> nodesInfo = {
+    {1, {"Entry node", "The start of everything...", 3}},
+    {2, {"Wire", "Transfers power", 6}},
+    {3, {"Lamp", "Lights up when powered", 5}}
+};
+
 template<typename T>
 int placeNode(Vector2 pos) {
     if (nodesPosMap[pos]) return 1;
@@ -179,6 +194,20 @@ int placeNode(Vector2 pos) {
     }
 
     return 0;
+}
+
+inline void deleteNodeAt(Vector2 pos) {
+    auto it = nodesPosMap.find(pos);
+    if (it == nodesPosMap.end()) return; 
+    Node* nodePtr = it->second;
+
+    auto vecIt = std::find_if(nodes.begin(), nodes.end(),
+        [nodePtr](const std::unique_ptr<Node>& n) { return n.get() == nodePtr; });
+    if (vecIt != nodes.end()) {
+        nodes.erase(vecIt);
+    }
+
+    nodesPosMap.erase(it);
 }
 
 #endif
